@@ -1,9 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const { NODE_ENV, CLIENT_ORIGIN, API_BASE_URL } = require("./config");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const { NODE_ENV } = require("./config");
+const allEntries = require("./store");
 
 const app = express();
 
@@ -11,10 +12,18 @@ const morganSetting = NODE_ENV === "production" ? "tiny" : "dev";
 
 app.use(morgan(morganSetting));
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: CLIENT_ORIGIN
+  })
+);
 
 app.get("/", (req, res) => {
   res.send(200, "Hello, Artlist!");
+});
+
+app.get("/list", (req, res) => {
+  res.status(200).json(allEntries);
 });
 
 app.use(function errorHandler(error, req, res, next) {

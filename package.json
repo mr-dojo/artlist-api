@@ -12,7 +12,7 @@
     "deploy": "git push heroku master"
   },
   "keywords": [],
-  "author": "",
+  "author": "Carlo Costantino email:costantinoart@gmail.com",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
