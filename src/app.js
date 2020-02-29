@@ -4,10 +4,9 @@ const cors = require("cors");
 const { NODE_ENV, CLIENT_ORIGIN, API_BASE_URL } = require("./config");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const allEntries = require("./store");
+const listRouter = require("./list/list-router");
 
 const app = express();
-
 const morganSetting = NODE_ENV === "production" ? "tiny" : "dev";
 
 app.use(morgan(morganSetting));
@@ -17,13 +16,10 @@ app.use(
     origin: CLIENT_ORIGIN
   })
 );
+app.use("/list", listRouter);
 
 app.get("/", (req, res) => {
   res.send(200, "Hello, Artlist!");
-});
-
-app.get("/list", (req, res) => {
-  res.status(200).json(allEntries);
 });
 
 app.use(function errorHandler(error, req, res, next) {
