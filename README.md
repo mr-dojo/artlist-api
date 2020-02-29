@@ -1,16 +1,23 @@
-# Artlist API!
+# Artlist API
 
 This API stores and serves artwork entries from a database
 
 ## Endpoints
 
+- GET `/list` returns all items from the artlist database
+
 ## Scripts
 
-Start the application `npm start`
+- Start the application `npm start`
+- Start nodemon for the application `npm run dev`
+- Run the tests `npm test`
+- Migrate `npm run migrate`
+- Migrate Test `npm run migrate:test`
 
-Start nodemon for the application `npm run dev`
+Seeding databases
 
-Run the tests `npm test`
+- Seed artlist `psql -U dunder_mifflin -d artlist -f ./seeds/seed.artlist.sql`
+- Seed artlist-test `psql -U dunder_mifflin -d artlist-test -f ./seeds/seed.artlist.sql`
 
 ## Deploying
 
