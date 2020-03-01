@@ -1,6 +1,6 @@
 const ListService = {
   getList(knexInstance) {
-    return knexInstance("artlist").select("*");
+    return knexInstance("list").select("*");
   }
 };
 

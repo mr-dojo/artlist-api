@@ -16,13 +16,13 @@ describe("/list", () => {
 
   before("clean the table", () => {
     return Promise.all([
-      db.raw(`truncate table artlist restart identity cascade`)
+      db.raw(`truncate table list restart identity cascade`)
     ]);
   });
 
   afterEach("cleanup", () => {
     return Promise.all([
-      db.raw(`truncate table artlist restart identity cascade`)
+      db.raw(`truncate table list restart identity cascade`)
     ]);
   });
 
@@ -79,7 +79,7 @@ describe("/list", () => {
       ];
 
       beforeEach("insert items", () => {
-        return db.into("artlist").insert(testItems);
+        return db.into("list").insert(testItems);
       });
 
       it("GET /lsit responds with 200 and all items", () => {
