@@ -1,4 +1,4 @@
-INSERT INTO artlist (title, description, medium, location, price, size, availability)
+INSERT INTO list (title, description, medium, location, price, size, availability)
 VALUES 
     ('Lahaina Fish',
     'a colorful green and purple fish',

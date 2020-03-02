@@ -3,5 +3,5 @@ CREATE TYPE availability_options AS ENUM (
   'Unavailable', 
   'Complicated');
 
-ALTER TABLE artlist
+ALTER TABLE list
 ADD availability availability_options;
