@@ -34,7 +34,7 @@ describe("/list", () => {
           .expect(200, []);
       });
     });
-    context("Given there are notes in the database", () => {
+    context("Given there are items in the database", () => {
       const testItems = [
         {
           id: 1,
@@ -87,6 +87,24 @@ describe("/list", () => {
           .get("/list")
           .expect(200, testItems);
       });
+    });
+  });
+  describe(`POST /list`, () => {
+    it(`creates an item, responding with 201 and the new item`, function() {
+      const newItem = {
+        title: "New Test",
+        description: "This is a description for a new test",
+        availability: "Unavailable"
+      };
+
+      return supertest(app)
+        .post("/list")
+        .send(newItem)
+        .expect(201)
+        .expect(res => {
+          expect(res.body.title).to.eql(newItem.title);
+          expect(res.body).to.have.property("id");
+        });
     });
   });
 });
