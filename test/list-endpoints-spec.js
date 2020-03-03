@@ -89,6 +89,74 @@ describe("/list", () => {
       });
     });
   });
+  describe(`GET /list/:item_id`, () => {
+    context(`Given no items`, () => {
+      it(`responds with 404`, () => {
+        const itemId = 123456;
+        return supertest(app)
+          .get(`/list/${itemId}`)
+          .expect(404, { error: { message: `item doesn't exist` } });
+      });
+    });
+
+    context("Given there are items in the database", () => {
+      const testItems = [
+        {
+          id: 1,
+          title: "Lahaina Fish",
+          description: "a colorful green and purple fish",
+          medium: "oil",
+          location: "Maui Hands Lahaina",
+          price: "2500",
+          size: "30x40",
+          availability: "Complicated"
+        },
+        {
+          id: 2,
+          title: "Honu",
+          description: "a turtle in a sea of blue",
+          medium: "mixed-media",
+          location: "somewhere in Canada",
+          price: "450",
+          size: "16x24",
+          availability: "Unavailable"
+        },
+        {
+          id: 3,
+          title: "Makawao Fish",
+          description: "a fish of the mountain",
+          medium: "mixed-media",
+          location: "the Lahaina office",
+          price: "5000",
+          size: "40x40",
+          availability: "Available"
+        },
+        {
+          id: 4,
+          title: "Haleakala",
+          description: "A giant volcano that looks like a mountain",
+          medium: "acrylic",
+          location: "on the mountain",
+          price: "3000",
+          size: "20x16",
+          availability: "Available"
+        }
+      ];
+
+      beforeEach("insert notes", () => {
+        return db.into("list").insert(testItems);
+      });
+
+      it("GET /list/:item_id responds with 200 and the specified item", () => {
+        const itemId = 2;
+        const expectedItem = testItems[itemId - 1];
+        return supertest(app)
+          .get(`/list/${itemId}`)
+          .expect(200, expectedItem);
+      });
+    });
+  });
+
   describe(`POST /list`, () => {
     it(`creates an item, responding with 201 and the new item`, function() {
       const newItem = {

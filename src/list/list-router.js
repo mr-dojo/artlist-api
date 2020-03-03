@@ -47,4 +47,21 @@ listRouter
       .catch(next);
   });
 
+listRouter
+  .route("/:item_id")
+  .all((req, res, next) => {
+    ListService.getById(req.app.get("db"), req.params.item_id)
+      .then(item => {
+        if (!item) {
+          return res.status(404).json({
+            error: { message: `item doesn't exist` }
+          });
+        }
+        res.item = item;
+        next();
+      })
+      .catch(next);
+  })
+  .get((req, res, next) => res.status(200).json(res.item));
+
 module.exports = listRouter;
