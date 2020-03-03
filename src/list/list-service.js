@@ -17,6 +17,12 @@ const ListService = {
       .then(rows => {
         return rows[0];
       });
+  },
+  deleteItem(knexInstance, id) {
+    return knexInstance
+      .from("list")
+      .where({ id })
+      .delete();
   }
 };
 

@@ -154,6 +154,19 @@ describe("/list", () => {
           .get(`/list/${itemId}`)
           .expect(200, expectedItem);
       });
+
+      it("DELETE /list/:item_id responds with 204 and the item is deleted", () => {
+        const itemId = 3;
+        const expectedItems = testItems.filter(item => item.id !== itemId);
+        return supertest(app)
+          .delete(`/list/${itemId}`)
+          .expect(204)
+          .then(res => {
+            return supertest(app)
+              .get(`/list`)
+              .expect(200, expectedItems);
+          });
+      });
     });
   });
 
