@@ -21,7 +21,10 @@ const ListService = {
   updateItem(knexInstance, id, newItemDetails) {
     return knexInstance("list")
       .where({ id })
-      .update(newItemDetails);
+      .update(newItemDetails)
+      .then(() => {
+        return knexInstance("list").where({ id });
+      });
   },
   deleteItem(knexInstance, id) {
     return knexInstance

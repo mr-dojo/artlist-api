@@ -41,8 +41,8 @@ listRouter
     }
 
     ListService.insertItem(req.app.get("db"), newItem)
-      .then(note => {
-        res.status(201).json(note);
+      .then(item => {
+        res.status(201).json(item);
       })
       .catch(next);
   });
@@ -86,15 +86,12 @@ listRouter
       const keys = Object.keys(allItemDetails);
       for (let i = 0; i < keys.length; i++) {
         if (allItemDetails[keys[i]] == undefined) {
-          console.log("BEFORE", allItemDetails);
           delete allItemDetails[keys[i]];
-          console.log("AFTER", allItemDetails);
         }
       }
     };
     deleteEmptyItems();
     const itemDetailsLength = Object.keys(allItemDetails).length;
-    console.log(itemDetailsLength);
     if (itemDetailsLength === 0) {
       return res.status(400).json({
         error: {
@@ -107,8 +104,8 @@ listRouter
       req.params.item_id,
       allItemDetails
     )
-      .then(r => {
-        res.status(204).end();
+      .then(item => {
+        res.status(201).json(item);
       })
       .catch(next);
   })
