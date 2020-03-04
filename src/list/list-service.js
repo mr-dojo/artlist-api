@@ -18,6 +18,11 @@ const ListService = {
         return rows[0];
       });
   },
+  updateItem(knexInstance, id, newItemDetails) {
+    return knexInstance("list")
+      .where({ id })
+      .update(newItemDetails);
+  },
   deleteItem(knexInstance, id) {
     return knexInstance
       .from("list")
