@@ -11,11 +11,7 @@ const morganSetting = NODE_ENV === "production" ? "tiny" : "dev";
 
 app.use(morgan(morganSetting));
 app.use(helmet());
-app.use(
-  cors({
-    origin: CLIENT_ORIGIN
-  })
-);
+app.use(cors());
 app.use("/list", listRouter);
 
 app.get("/", (req, res) => {
