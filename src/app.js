@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const { NODE_ENV, CLIENT_ORIGIN, API_BASE_URL } = require("./config");
+const { NODE_ENV } = require("./config");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const listRouter = require("./list/list-router");
@@ -13,10 +13,6 @@ app.use(morgan(morganSetting));
 app.use(helmet());
 app.use(cors());
 app.use("/list", listRouter);
-
-app.get("/", (req, res) => {
-  res.send(200, "Hello, Artlist!");
-});
 
 app.use(function errorHandler(error, req, res, next) {
   let response;

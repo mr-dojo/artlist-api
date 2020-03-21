@@ -1,4 +1,4 @@
-const express = require("express"); 
+const express = require("express");
 const ListService = require("./list-service");
 
 const listRouter = express.Router();
@@ -81,6 +81,8 @@ listRouter
       size,
       availability
     };
+
+    // filter out undefined request values
     const deleteEmptyItems = () => {
       const keys = Object.keys(allItemDetails);
       for (let i = 0; i < keys.length; i++) {
@@ -90,6 +92,8 @@ listRouter
       }
     };
     deleteEmptyItems();
+
+    // make sure there is at least one value being updated
     const itemDetailsLength = Object.keys(allItemDetails).length;
     if (itemDetailsLength === 0) {
       return res.status(400).json({
@@ -98,6 +102,7 @@ listRouter
         }
       });
     }
+
     ListService.updateItem(
       req.app.get("db"),
       req.params.item_id,
