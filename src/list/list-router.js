@@ -1,5 +1,4 @@
-const express = require("express");
-const allEntries = require("../store");
+const express = require("express"); 
 const ListService = require("./list-service");
 
 const listRouter = express.Router();
