@@ -5,13 +5,13 @@ It stores data in a Heroku hosted PostgreSQL database called ["artlist-api"](htt
 
 ## Live API and Client links
 
-[Click Here](https://artlist-api.herokuapp.com/) to interact with the _live API_
-[Click Here](https://artlist-app.now.sh/) to view the _live Client_ in the browser.
+- [Click Here](https://artlist-api.herokuapp.com/) to interact with the _live API_
+- [Click Here](https://artlist-app.now.sh/) to view the _live Client_ in the browser.
 
 ## GitHub repo links
 
-[Click Here](https://github.com/mr-dojo/artlist-api) for the _API_ repo
-[Click Here](https://github.com/mr-dojo/artlist-app) for the _Client_ repo
+- [Click Here](https://github.com/mr-dojo/artlist-api) for the _API_ repo
+- [Click Here](https://github.com/mr-dojo/artlist-app) for the _Client_ repo
 
 ## Endpoints
 
